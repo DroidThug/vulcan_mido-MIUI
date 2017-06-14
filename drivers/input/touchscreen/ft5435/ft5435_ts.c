@@ -1166,11 +1166,6 @@ static irqreturn_t ft5435_ts_interrupt(int irq, void *dev_id)
 			break;
 		input_mt_slot(ip_dev, id);
 
-	if (status == FT_TOUCH_DOWN)
-		printk("[FTS]Down pid[%d]:[%d, %d]\n", id, x, y);
-	else if (status == 1)
-		printk("[FTS]Up pid[%d]:[%d, %d]\n", id, x, y);
-
 		if (x < data->pdata->panel_maxx && y < data->pdata->panel_maxy) {
 			if (status == FT_TOUCH_DOWN || status == FT_TOUCH_CONTACT) {
 				input_mt_report_slot_state(ip_dev, MT_TOOL_FINGER, 1);
@@ -2748,7 +2743,7 @@ static ssize_t fts_set_cover_mode(struct device *dev,
 	}
 	return ret;
 }
-static DEVICE_ATTR(set_cover_mode, 0664, NULL,
+static DEVICE_ATTR(set_cover_mode, 0220, NULL,
 				fts_set_cover_mode);
 
 #endif
